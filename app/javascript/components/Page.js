@@ -18,6 +18,7 @@ class Page extends Component {
     };
 
     this.addBankAccount = this.addBankAccount.bind(this);
+    this.updateBankAccount = this.updateBankAccount.bind(this);
     this.deleteBankAccount = this.deleteBankAccount.bind(this);
   }
 
@@ -41,6 +42,25 @@ class Page extends Component {
         }));
         const { history } = this.props;
         history.push(`/bank_accounts/${savedBankAcct.id}`);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  updateBankAccount(updatedBankAcct) {
+    axios
+      .put(`/api/bank_accounts/${updatedBankAcct.id}.json`, updatedBankAcct)
+      .then((response) => {
+        const { bankAccounts } = this.state;
+        const updatedBankAcct = response.data;
+        const newBankAccounts = bankAccounts.filter(bank_acct => bank_acct.id !== updatedBankAcct.id);
+        newBankAccounts.push(updatedBankAcct)
+        const { history } = this.props;
+        history.push(`/bank_accounts/${updatedBankAcct.id}`);
+        this.setState(
+          { bankAccounts: newBankAccounts }
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -88,6 +108,13 @@ class Page extends Component {
             path="/bank_accounts/new"
             component={BankAccountForm}
             onSubmit={this.addBankAccount} />
+          <PropsRoute
+            exact
+            path="/bank_accounts/:id/edit"
+            component={BankAccountForm}
+            bankAcct={bankAcct}
+            onSubmit={this.updateBankAccount}
+          />
           <PropsRoute
             path="/bank_accounts/:id"
             component={BankAccount}
