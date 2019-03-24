@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :location do
-    address { '123 Fake St' }
-    address2 { 'Apt 42' }
+    sequence(:address) { |n| "#{n} Fake St" }
+    address2 { 'Apt 123' }
     city { 'City' }
     postal { '54321' }
   end

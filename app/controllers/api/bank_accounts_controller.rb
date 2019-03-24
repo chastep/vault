@@ -3,16 +3,26 @@ class Api::BankAccountsController < ApplicationController
 
   def index
     @bank_accts = BankAccount.order(created_at: :DESC)
-    render json: @bank_accts, status: :ok
+    json_response(@bank_accts)
   end
 
   def create
-    @bank_acct = BankAccount.create(bank_acct_params)
-    render json: @bank_acct, status: :created
+    @bank_acct = BankAccount.new(bank_acct_params)
+    location = Location.find_or_initialize_by(bank_acct_params['location_attributes'])
+
+    if location.valid?
+      location.save!
+      @bank_acct.location = location
+      @bank_acct.save!
+
+      json_response(@bank_acct, :created)
+    else
+      json_response({ message: 'Invalid parameters' }, :unprocessable_entity)
+    end
   end
 
   def show
-    render json: @bank_acct, status: :created
+    json_response(@bank_acct)
   end
 
   def update
