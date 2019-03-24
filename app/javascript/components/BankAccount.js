@@ -8,13 +8,11 @@ const BankAccount = ({ bankAcct }) => (
     </h2>
     <ul>
       <li>
-        <strong>Account Number:</strong>
-        {' '}
+        <strong>Account Number: </strong>
         {bankAcct.account_number}
       </li>
       <li>
-        <strong>Routing Number:</strong>
-        {' '}
+        <strong>Routing Number: </strong>
         {bankAcct.routing_number}
       </li>
     </ul>

@@ -21,7 +21,10 @@ class BankAccountList extends Component {
   render() {
     return (
       <section>
-        <h2>Bank Accounts</h2>
+        <h2>
+          Bank Accounts
+          <Link to="/bank_accounts/new">New Bank Account</Link>
+        </h2>
         <ul>{this.renderBankAccounts()}</ul>
       </section>
     );
