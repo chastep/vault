@@ -17,8 +17,7 @@ class Page extends React.Component {
       .then(response => this.setState({ bankAccounts: response.data }))
       .catch((error) => {
         console.log(error);
-      }
-    );
+      });
   }
 
   render() {

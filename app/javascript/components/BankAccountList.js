@@ -28,11 +28,11 @@ class BankAccountList extends React.Component {
 }
 
 BankAccountList.propTypes = {
-  events: PropTypes.arrayOf(PropTypes.object),
+  bankAccounts: PropTypes.arrayOf(PropTypes.object),
 };
 
 BankAccountList.defaultProps = {
-  events: [],
+  bankAccounts: [],
 };
 
 export default BankAccountList;
