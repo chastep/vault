@@ -16,8 +16,7 @@ export const validateBankAccount = (bankAcct) => {
   if (bankAcct.city === '') {
     errors.city = 'You must enter a valid city!';
   }
-
-  console.log(bankAcct);
+  
   return errors;
 };
 

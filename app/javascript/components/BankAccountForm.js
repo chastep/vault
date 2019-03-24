@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { isEmptyObject, validateBankAccount } from '../helpers/helpers';
 
+const LOCATION_ATTRS = ['address', 'address2', 'city', 'postal'];
+
 class BankAccountForm extends Component {
   constructor(props) {
     super(props);
@@ -30,13 +32,15 @@ class BankAccountForm extends Component {
   handleInputChange(e) {
     const { target } = e;
     const { name, value } = target;
+    const bankAcctInfo = Object.assign({}, this.state.bankAcct);
 
-    this.setState(prevState => ({
-      bankAcct: {
-        ...prevState.bankAcct,
-        [name]: value,
-      },
-    }));
+    if (LOCATION_ATTRS.includes(name)) {
+      bankAcctInfo.location_attributes[name] = value
+    } else {
+      bankAcctInfo[name] = value
+    };
+
+    this.setState({bankAcct: bankAcctInfo});
   };
 
   renderErrors() {
@@ -153,11 +157,13 @@ BankAccountForm.defaultProps = {
     account_number: '',
     routing_number: '',
     nickname: '',
-    address: '',
-    address2: '',
-    city: '',
-    postal: '',
-  },
+    location_attributes: {
+      address: '',
+      address2: '',
+      city: '',
+      postal: '',
+    }
+  }
 };
 
 export default BankAccountForm;
