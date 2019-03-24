@@ -63,6 +63,8 @@ class BankAccountForm extends Component {
   };
 
   render() {
+    const { bankAcct } = this.state;
+
     return (
       <div>
         <h2>New Bank Account</h2>
@@ -75,6 +77,7 @@ class BankAccountForm extends Component {
                 type="text"
                 id="account_number"
                 name="account_number"
+                value={bankAcct.account_number}
                 onChange={this.handleInputChange} />
             </label>
           </div>
@@ -85,6 +88,7 @@ class BankAccountForm extends Component {
                 type="text"
                 id="routing_number"
                 name="routing_number"
+                value={bankAcct.routing_number}
                 onChange={this.handleInputChange} />
             </label>
           </div>
@@ -95,6 +99,7 @@ class BankAccountForm extends Component {
                 type="text"
                 id="nickname"
                 name="nickname"
+                value={bankAcct.nickname}
                 onChange={this.handleInputChange} />
             </label>
           </div>
@@ -105,6 +110,7 @@ class BankAccountForm extends Component {
                 type="text"
                 id="address"
                 name="address"
+                value={bankAcct.address}
                 onChange={this.handleInputChange} />
             </label>
           </div>
@@ -115,6 +121,7 @@ class BankAccountForm extends Component {
                 type="text"
                 id="address2"
                 name="address2"
+                value={bankAcct.address2}
                 onChange={this.handleInputChange} />
             </label>
           </div>
@@ -125,6 +132,7 @@ class BankAccountForm extends Component {
                 type="text"
                 id="city"
                 name="city"
+                value={bankAcct.city}
                 onChange={this.handleInputChange} />
             </label>
           </div>
@@ -135,6 +143,7 @@ class BankAccountForm extends Component {
                 type="text"
                 id="postal"
                 name="postal"
+                value={bankAcct.postal}
                 onChange={this.handleInputChange} />
             </label>
           </div>

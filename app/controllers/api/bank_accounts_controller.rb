@@ -2,8 +2,10 @@ class Api::BankAccountsController < ApplicationController
   before_action :find_bank_acct, only: [:show, :update, :destroy]
 
   def index
-    @bank_accts = BankAccount.order(created_at: :DESC)
-    json_response(@bank_accts)
+    @bank_accts = BankAccount.eager_load(:location).order(created_at: :DESC)
+    payload = @bank_accts.map { |record| bank_account_payload(record) }
+
+    json_response(payload)
   end
 
   def create
@@ -15,7 +17,7 @@ class Api::BankAccountsController < ApplicationController
       @bank_acct.location = location
       @bank_acct.save!
 
-      json_response(@bank_acct, :created)
+      json_response(bank_account_payload(@bank_acct), :created)
     else
       json_response({ message: 'Invalid parameters' }, :unprocessable_entity)
     end
@@ -27,7 +29,8 @@ class Api::BankAccountsController < ApplicationController
 
   def update
     @bank_acct.update(bank_acct_params)
-    head :no_content
+
+    json_response(bank_account_payload(@bank_acct.reload))
   end
 
   def destroy
