@@ -1,35 +1,28 @@
 class Api::BankAccountsController < ApplicationController
   before_action :find_bank_acct, only: [:show, :update, :destroy]
-  respond_to :json
 
   def index
-    respond_with BankAccount.order(created_at: :DESC)
-  end
-
-  def new
-    @bank_account = BankAccount.new
-    @bank_account.build_location
-
-    respond_with 
+    @bank_accts = BankAccount.order(created_at: :DESC)
+    render json: @bank_accts, status: :ok
   end
 
   def create
-    respond_with :api, BankAccount.create(bank_acct_params)
+    @bank_acct = BankAccount.create(bank_acct_params)
+    render json: @bank_acct, status: :created
   end
 
   def show
-    respond_with BankAccount.find(params[:id])
+    render json: @bank_acct, status: :created
   end
 
   def update
-    bank_acct = BankAccount.find(params['id'])
-    bank_acct.update(bank_acct_params)
-
-    respond_with BankAccount, json: bank_acct
+    @bank_acct.update(bank_acct_params)
+    head :no_content
   end
 
   def destroy
-    respond_with @bank_acct.destroy
+    @bank_acct.destroy
+    head :no_content
   end
 
   private
@@ -51,11 +44,5 @@ class Api::BankAccountsController < ApplicationController
 
   def find_bank_acct
     @bank_acct = BankAccount.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    flash[:alert] = 'Eye Care Provider Location does not exist!'
-    redirect_to url_for(
-      controller: 'admin/eye_care_providers',
-      action: 'index'
-    )
   end
 end

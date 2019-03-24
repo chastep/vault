@@ -4,6 +4,5 @@ FactoryBot.define do
     address2 { 'Apt 42' }
     city { 'City' }
     postal { '54321' }
-    bank_account
   end
 end

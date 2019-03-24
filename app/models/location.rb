@@ -1,7 +1,6 @@
 class Location < ApplicationRecord
-  belongs_to :bank_account
+  has_many :bank_accounts
 
   validates :address, presence: true
   validates :city, presence: true
-  validates :bank_account_id, presence: true
 end
