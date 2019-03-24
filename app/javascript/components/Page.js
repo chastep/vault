@@ -18,10 +18,12 @@ class Page extends Component {
     };
 
     this.addBankAccount = this.addBankAccount.bind(this);
+    this.deleteBankAccount = this.deleteBankAccount.bind(this);
   }
 
   componentDidMount() {
-    axios.get('/api/bank_accounts.json')
+    axios
+      .get('/api/bank_accounts.json')
       .then(response => this.setState({ bankAccounts: response.data }))
       .catch((error) => {
         console.log(error);
@@ -32,7 +34,7 @@ class Page extends Component {
     axios
       .post('/api/bank_accounts.json', newBankAcct)
       .then((response) => {
-        alert('Bank Account Added!');
+        alert('Bank Account added!');
         const savedBankAcct = response.data;
         this.setState(prevState => ({
           bankAccounts: [...prevState.bankAccounts, savedBankAcct],
@@ -43,6 +45,28 @@ class Page extends Component {
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  deleteBankAccount(bankAcctId) {
+    const sure = window.confirm('Are you sure?');
+    if (sure) {
+      axios
+        .delete(`/api/bank_accounts/${bankAcctId}.json`)
+        .then((response) => {
+          if (response.status === 204) {
+            alert('Bank Account deleted!');
+            const { history } = this.props;
+            history.push('/bank_accounts');
+            const { bankAccounts } = this.state;
+            this.setState(
+              { bankAccounts: bankAccounts.filter(bank_acct => bank_acct.id !== bankAcctId) }
+            );
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }
 
   render() {
@@ -67,7 +91,8 @@ class Page extends Component {
           <PropsRoute
             path="/bank_accounts/:id"
             component={BankAccount}
-            bankAcct={bankAcct} />
+            bankAcct={bankAcct}
+            onDelete={this.deleteBankAccount} />
         </Switch>
       </div>
     );
