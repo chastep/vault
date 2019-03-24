@@ -1,3 +1,3 @@
 class BankAccount < ApplicationRecord
-  has_one :location
+  has_one :location, dependent: :destroy
 end
