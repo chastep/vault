@@ -165,12 +165,11 @@ RSpec.describe 'Bank Accounts API', type: :request do
       before { put "/api/bank_accounts/#{bank_acct_1.id}", params: update_params }
 
       it 'updates the record' do
-        expect(response.body).to be_empty
         expect(bank_acct_1.reload.account_number).to eq('0123123123')
       end
 
       it 'returns status code 204' do
-        expect(response).to have_http_status(204)
+        expect(response).to have_http_status(200)
       end
     end
   end
