@@ -33,8 +33,10 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# additional gems
 gem 'responders'
 gem 'bootsnap'
+gem 'webpacker', '>= 4.0.x'
 
 group :development, :test do
   gem 'rspec-rails'
