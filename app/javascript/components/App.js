@@ -1,9 +1,11 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
+
 import Page from './Page';
 
 const App = () => (
   <div>
-    <Page />
+    <Route path="/bank_accounts/:id?" component={Page} />
   </div>
 );
 

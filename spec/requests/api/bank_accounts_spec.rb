@@ -7,7 +7,7 @@ RSpec.describe 'Bank Accounts API', type: :request do
   let(:valid_params) do
     {
       bank_account: {
-        account_number: '999888777',
+        account_number: '0999888777',
         routing_number: '111222333',
         nickname: 'Bank Acct Nickname',
         location_attributes: {
@@ -22,7 +22,7 @@ RSpec.describe 'Bank Accounts API', type: :request do
   let(:valid_params_2) do
     {
       bank_account: {
-        account_number: '777666555',
+        account_number: '0777666555',
         routing_number: '111222333',
         nickname: 'Bank Acct Nickname',
         location_attributes: {
@@ -52,7 +52,7 @@ RSpec.describe 'Bank Accounts API', type: :request do
   let(:invalid_params_2) do
     {
       bank_account: {
-        account_number: '999888777',
+        account_number: '0999888777',
         routing_number: '111222333',
         nickname: 'Bank Acct Nickname',
         location_attributes: {
@@ -64,7 +64,7 @@ RSpec.describe 'Bank Accounts API', type: :request do
   let(:update_params) do
     { 
       bank_account: {
-        account_number: '123123123'
+        account_number: '0123123123'
       }
     }
   end
@@ -87,7 +87,7 @@ RSpec.describe 'Bank Accounts API', type: :request do
       before { post '/api/bank_accounts', params: valid_params }
 
       it 'creates a bank account' do
-        expect(json['account_number']).to eq('999888777')
+        expect(json['account_number']).to eq('0999888777')
       end
 
       it 'returns status code 201' do
@@ -99,7 +99,7 @@ RSpec.describe 'Bank Accounts API', type: :request do
       before { post '/api/bank_accounts', params: valid_params_2 }
 
       it 'creates a bank account' do
-        expect(json['account_number']).to eq('777666555')
+        expect(json['account_number']).to eq('0777666555')
       end
 
       it 'returns status code 201' do
@@ -166,7 +166,7 @@ RSpec.describe 'Bank Accounts API', type: :request do
 
       it 'updates the record' do
         expect(response.body).to be_empty
-        expect(bank_acct_1.reload.account_number).to eq('123123123')
+        expect(bank_acct_1.reload.account_number).to eq('0123123123')
       end
 
       it 'returns status code 204' do

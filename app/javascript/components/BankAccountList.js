@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class BankAccountList extends React.Component {
   renderBankAccounts() {
@@ -10,9 +11,9 @@ class BankAccountList extends React.Component {
 
     return bankAccounts.map(bankAcct => (
       <li key={bankAcct.id}>
-        {bankAcct.nickname}
-        {' - '}
-        {bankAcct.created_at}
+        <Link to={`/bank_accounts/${bankAcct.id}`}>
+          {bankAcct.nickname + ' - ' + bankAcct.created_at}
+        </Link>
       </li>
     ));
   }
