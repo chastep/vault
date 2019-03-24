@@ -38,10 +38,11 @@ gem 'bootsnap'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'rubocop-rspec'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
+  gem 'capybara'
   gem 'selenium-webdriver'
   gem 'rb-readline'
   gem 'pry-rails'
@@ -58,8 +59,8 @@ group :development do
 end
 
 group :test do
-  gem 'factory_bot_rails', '~> 4.0'
+  gem 'factory_bot_rails'
   gem 'shoulda-matchers', '~> 3.1'
-  gem 'faker', '~> 1.8.7'
+  gem 'faker'
   gem 'database_cleaner'
 end
