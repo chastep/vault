@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.6', '>= 5.1.6.2'
+gem 'rails', '~> 5.2.2.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -33,19 +33,20 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Chase added gems
-# for looking into lifes mysteries and replace irb
-gem 'pry-rails', :group => :development
-# load the environment variables
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'responders'
+gem 'bootsnap'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'rubocop-rspec'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
+  gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'rb-readline'
+  gem 'pry-rails'
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -58,8 +59,8 @@ group :development do
 end
 
 group :test do
-  gem 'factory_bot_rails', '~> 4.0'
+  gem 'factory_bot_rails'
   gem 'shoulda-matchers', '~> 3.1'
-  gem 'faker', '~> 1.8.7'
+  gem 'faker'
   gem 'database_cleaner'
 end
