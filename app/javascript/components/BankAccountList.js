@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-class BankAccountList extends React.Component {
+class BankAccountList extends Component {
   renderBankAccounts() {
     const { bankAccounts } = this.props;
     bankAccounts.sort(

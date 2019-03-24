@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 
 import Header from './Header';
@@ -6,7 +6,7 @@ import BankAccount from './BankAccount';
 import BankAccountList from './BankAccountList';
 import PropsRoute from './PropsRoute';
 
-class Page extends React.Component {
+class Page extends Component {
   constructor(props) {
     super(props);
 
