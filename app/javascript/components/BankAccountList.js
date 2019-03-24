@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-class BankAccountList extends React.Component {
+class BankAccountList extends Component {
   renderBankAccounts() {
     const { bankAccounts } = this.props;
     bankAccounts.sort(
@@ -21,7 +21,10 @@ class BankAccountList extends React.Component {
   render() {
     return (
       <section>
-        <h2>Bank Accounts</h2>
+        <h2>
+          Bank Accounts
+          <Link to="/bank_accounts/new">New Bank Account</Link>
+        </h2>
         <ul>{this.renderBankAccounts()}</ul>
       </section>
     );
