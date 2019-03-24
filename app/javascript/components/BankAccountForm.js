@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Header, Button, Form } from "semantic-ui-react";
 
 import { isEmptyObject, validateBankAccount } from '../helpers/helpers';
 
@@ -67,90 +68,77 @@ class BankAccountForm extends Component {
 
     return (
       <div>
-        <h2>New Bank Account</h2>
+        <Header>
+          New Bank Account
+        </Header>
         {this.renderErrors()}
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label>
-              <strong>Account Number:</strong>
-              <input
-                type="text"
-                id="account_number"
-                name="account_number"
-                value={bankAcct.account_number}
-                onChange={this.handleInputChange} />
-            </label>
-          </div>
-          <div>
-            <label>
-              <strong>Routing Number:</strong>
-              <input
-                type="text"
-                id="routing_number"
-                name="routing_number"
-                value={bankAcct.routing_number}
-                onChange={this.handleInputChange} />
-            </label>
-          </div>
-          <div>
-            <label>
-              <strong>Nickname:</strong>
-              <input
-                type="text"
-                id="nickname"
-                name="nickname"
-                value={bankAcct.nickname}
-                onChange={this.handleInputChange} />
-            </label>
-          </div>
-          <div>
-            <label>
-              <strong>Address:</strong>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                value={bankAcct.address}
-                onChange={this.handleInputChange} />
-            </label>
-          </div>
-          <div>
-            <label>
-              <strong>Address 2:</strong>
-              <input
-                type="text"
-                id="address2"
-                name="address2"
-                value={bankAcct.address2}
-                onChange={this.handleInputChange} />
-            </label>
-          </div>
-          <div>
-            <label>
-              <strong>City:</strong>
-              <input
-                type="text"
-                id="city"
-                name="city"
-                value={bankAcct.city}
-                onChange={this.handleInputChange} />
-            </label>
-          </div>
-          <div>
-            <label>
-              <strong>ZIP Code:</strong>
-              <input
-                type="text"
-                id="postal"
-                name="postal"
-                value={bankAcct.postal}
-                onChange={this.handleInputChange} />
-            </label>
-          </div>
-          <div>
-            <button type="submit">Save</button>
-          </div>
-        </form>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Field>
+            <label>Account Number</label>
+            <input
+              type="text"
+              id="account_number"
+              name="account_number"
+              placeholder=''
+              value={bankAcct.account_number}
+              onChange={this.handleInputChange} />
+          </Form.Field>
+          <Form.Field>
+            <label>Account Number</label>
+            <input
+              type="text"
+              id="routing_number"
+              name="routing_number"
+              value={bankAcct.routing_number}
+              onChange={this.handleInputChange} />
+          </Form.Field>
+          <Form.Field>
+            <label>Nickname</label>
+            <input
+              type="text"
+              id="nickname"
+              name="nickname"
+              value={bankAcct.nickname}
+              onChange={this.handleInputChange} />
+          </Form.Field>
+          <Form.Field>
+            <label>Address</label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              value={bankAcct.address}
+              onChange={this.handleInputChange} />
+          </Form.Field>
+          <Form.Field>
+            <label>Address 2</label>
+            <input
+              type="text"
+              id="address2"
+              name="address2"
+              value={bankAcct.address2}
+              onChange={this.handleInputChange} />
+          </Form.Field>
+          <Form.Field>
+            <label>City</label>
+            <input
+              type="text"
+              id="city"
+              name="city"
+              value={bankAcct.city}
+              onChange={this.handleInputChange} />
+          </Form.Field>
+          <Form.Field>
+            <label>ZIP Code</label>
+            <input
+              type="text"
+              id="postal"
+              name="postal"
+              value={bankAcct.postal}
+              onChange={this.handleInputChange} />
+          </Form.Field>
+          <Button type='submit'>Submit</Button>
+        </Form>
       </div>
     );
   }
