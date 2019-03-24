@@ -1,7 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+
 import Header from './Header';
+import BankAccount from './BankAccount';
 import BankAccountList from './BankAccountList';
+import PropsRoute from './PropsRoute';
 
 class Page extends React.Component {
   constructor(props) {
@@ -24,10 +27,19 @@ class Page extends React.Component {
     const { bankAccounts } = this.state;
     if (bankAccounts === null) return null;
 
+    const { match } = this.props;
+    const bankAcctId = match.params.id;
+    const bankAcct = bankAccounts.find(e => e.id === Number(bankAcctId));
+
     return (
       <div>
         <Header />
-        <BankAccountList bankAccounts={bankAccounts} />
+        <BankAccountList
+          bankAccounts={bankAccounts} />
+        <PropsRoute
+          path="/bank_accounts/:id"
+          component={BankAccount}
+          bankAcct={bankAcct} />
       </div>
     );
   }
