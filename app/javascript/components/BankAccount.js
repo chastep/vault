@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const BankAccount = ({ bankAcct }) => (
+const BankAccount = ({ bankAcct, onDelete }) => (
   <div>
     <h2>
       {bankAcct.nickname + ' - ' + bankAcct.created_at}
+      <button className="delete" type="button" onClick={() => onDelete(bankAcct.id)}>
+        Delete
+      </button>
     </h2>
     <ul>
       <li>
@@ -21,6 +24,7 @@ const BankAccount = ({ bankAcct }) => (
 
 BankAccount.propTypes = {
   bankAcct: PropTypes.shape(),
+  onDelete: PropTypes.func.isRequired,
 };
 
 BankAccount.defaultProps = {
