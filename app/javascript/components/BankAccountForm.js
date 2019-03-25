@@ -65,11 +65,12 @@ class BankAccountForm extends Component {
 
   render() {
     const { bankAcct } = this.state;
+    const cancelURL = bankAcct.id ? `/bank_accounts/${bankAcct.id}` : '/bank_accounts';
 
     return (
       <div>
-        <Header>
-          New Bank Account
+        <Header as='h3'>
+          Bank Account Info
         </Header>
         {this.renderErrors()}
         <Form onSubmit={this.handleSubmit}>
@@ -138,6 +139,7 @@ class BankAccountForm extends Component {
               onChange={this.handleInputChange} />
           </Form.Field>
           <Button type='submit'>Submit</Button>
+          <Button type='button' onClick={(e, data) => this.props.history.push(cancelURL)}>Cancel</Button>
         </Form>
       </div>
     );

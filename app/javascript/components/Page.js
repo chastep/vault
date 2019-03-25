@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Switch } from 'react-router-dom';
+import { Container, Segment } from "semantic-ui-react";
 
 import Header from './Header';
 import BankAccount from './BankAccount';
@@ -99,28 +100,38 @@ class Page extends Component {
 
     return (
       <div>
-        <Header />
-        <BankAccountList
-          bankAccounts={bankAccounts}
-          activeId={Number(bankAcctId)} />
-        <Switch>
-          <PropsRoute
-            path="/bank_accounts/new"
-            component={BankAccountForm}
-            onSubmit={this.addBankAccount} />
-          <PropsRoute
-            exact
-            path="/bank_accounts/:id/edit"
-            component={BankAccountForm}
-            bankAcct={bankAcct}
-            onSubmit={this.updateBankAccount}
-          />
-          <PropsRoute
-            path="/bank_accounts/:id"
-            component={BankAccount}
-            bankAcct={bankAcct}
-            onDelete={this.deleteBankAccount} />
-        </Switch>
+        <Container>
+          <Segment.Group raised>
+            <Segment>
+              <Header />
+            </Segment>
+            <Segment>
+              <BankAccountList
+                bankAccounts={bankAccounts}
+                activeId={Number(bankAcctId)} />
+            </Segment>
+            <Segment>
+              <Switch>
+                <PropsRoute
+                  path="/bank_accounts/new"
+                  component={BankAccountForm}
+                  onSubmit={this.addBankAccount} />
+                <PropsRoute
+                  exact
+                  path="/bank_accounts/:id/edit"
+                  component={BankAccountForm}
+                  bankAcct={bankAcct}
+                  onSubmit={this.updateBankAccount}
+                />
+                <PropsRoute
+                  path="/bank_accounts/:id"
+                  component={BankAccount}
+                  bankAcct={bankAcct}
+                  onDelete={this.deleteBankAccount} />
+              </Switch>
+            </Segment>
+          </Segment.Group>
+        </Container>
       </div>
     );
   }

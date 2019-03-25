@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Header, Button, List } from "semantic-ui-react";
+import { Header, Table } from "semantic-ui-react";
+
+import { BANK_ACCOUNT_HEADERS, renderBankAccountRow } from '../helpers/helpers';
 
 class BankAccountList extends Component {
   renderBankAccounts() {
@@ -10,23 +12,36 @@ class BankAccountList extends Component {
       (a, b) => new Date(b.created_at) - new Date(a.created_at),
     );
 
-    return bankAccounts.map(bankAcct => (
-      <li key={bankAcct.id}>
-        <Link to={`/bank_accounts/${bankAcct.id}`}>
-          {bankAcct.nickname + ' - ' + bankAcct.created_at}
-        </Link>
-      </li>
-    ));
+    return (
+      bankAccounts.map(bankAcct => (
+        renderBankAccountRow(bankAcct)
+      ))
+    );
   }
 
   render() {
     return (
       <section>
-        <h2>
+        <Header as='h2' floated='left'>
           Bank Accounts
-          <Link to="/bank_accounts/new">New Bank Account</Link>
-        </h2>
-        <ul>{this.renderBankAccounts()}</ul>
+        </Header>
+        <Header as='h3' floated='right'>
+          <Link to={`/bank_accounts/new`}>
+            New
+          </Link>
+        </Header>
+        <Table celled>
+          <Table.Header>
+            <Table.Row>
+              {BANK_ACCOUNT_HEADERS.map((header, index) => (
+                <Table.HeaderCell key={index}>{header}</Table.HeaderCell>
+              ))}
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            {this.renderBankAccounts()}
+          </Table.Body>
+        </Table>
       </section>
     );
   }
