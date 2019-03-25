@@ -59,4 +59,8 @@ class Api::BankAccountsController < ApplicationController
   def find_bank_acct
     @bank_acct = BankAccount.find(params[:id])
   end
+
+  def handle_validation_errors
+    render json: { errors: @bank_acct.errors.full_messages }, status: 422
+  end
 end
