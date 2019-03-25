@@ -5,7 +5,7 @@ import Page from './Page';
 
 const App = () => (
   <div>
-    <Route path="/bank_accounts/:id?" component={Page} />
+    <Route path='/bank_accounts/:id?' component={Page} />
   </div>
 );
 

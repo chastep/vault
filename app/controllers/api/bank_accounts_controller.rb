@@ -10,7 +10,7 @@ class Api::BankAccountsController < ApplicationController
 
   def create
     @bank_acct = BankAccount.new(bank_acct_params)
-    location = Location.find_or_initialize_by(bank_acct_params['location_attributes'])
+    location = Location.new(bank_acct_params['location_attributes'])
 
     if location.valid?
       location.save!
@@ -28,7 +28,7 @@ class Api::BankAccountsController < ApplicationController
   end
 
   def update
-    @bank_acct.update(bank_acct_params)
+    @bank_acct.update_attributes(bank_acct_params)
 
     json_response(bank_account_payload(@bank_acct.reload))
   end
@@ -47,6 +47,7 @@ class Api::BankAccountsController < ApplicationController
       :routing_number,
       :nickname,
       location_attributes: [
+        :id,
         :address,
         :address2,
         :city,

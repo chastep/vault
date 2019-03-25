@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Header, Button, Form } from 'semantic-ui-react';
 
-import { isEmptyObject, validateBankAccount } from '../helpers/helpers';
-
-const LOCATION_ATTRS = ['address', 'address2', 'city', 'postal'];
+import { isEmptyObject, validateBankAccount, bankAccountErrors, LOCATION_ATTRS } from '../helpers/helpers';
 
 class BankAccountForm extends Component {
   constructor(props) {
@@ -11,11 +10,32 @@ class BankAccountForm extends Component {
 
     this.state = {
       bankAcct: props.bankAcct,
-      errors: {},
+      errors: [],
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  formatBankAccountPayload(bacct) {
+    return (
+      {
+        id: bacct.id,
+        bank_account: {
+          id: bacct.id,
+          account_number: bacct.account_number,
+          routing_number: bacct.routing_number,
+          nickname: bacct.nickname,
+          location_attributes: {
+            id: bacct.location_id,
+            address: bacct.address,
+            address2: bacct.address2,
+            city: bacct.city,
+            postal: bacct.postal,
+          }
+        }
+      }
+    )
   }
 
   handleSubmit(e) {
@@ -25,132 +45,98 @@ class BankAccountForm extends Component {
     if (!isEmptyObject(errors)) {
       this.setState({ errors });
     } else {
-      this.props.onSubmit(bankAcct);
+      const payload = this.formatBankAccountPayload(bankAcct);
+      this.props.onSubmit(payload);
     }
-  };
+  }
 
   handleInputChange(e) {
     const { target } = e;
     const { name, value } = target;
     const bankAcctInfo = Object.assign({}, this.state.bankAcct);
-
-    if (LOCATION_ATTRS.includes(name)) {
-      bankAcctInfo.location_attributes[name] = value
-    } else {
-      bankAcctInfo[name] = value
-    };
+    bankAcctInfo[name] = value
 
     this.setState({bankAcct: bankAcctInfo});
-  };
-
-  renderErrors() {
-    const { errors } = this.state;
-
-    if (isEmptyObject(errors)) {
-      return null;
-    }
-
-    return (
-      <div>
-        <h3>The following errors prohibited the Bank Account from being saved:</h3>
-        <ul>
-          {Object.values(errors).map(error => (
-            <li key={error}>{error}</li>
-          ))}
-        </ul>
-      </div>
-    );
-  };
+  }
 
   render() {
     const { bankAcct } = this.state;
+    const cancelURL = bankAcct.id ? `/bank_accounts/${bankAcct.id}` : '/bank_accounts';
 
     return (
       <div>
-        <h2>New Bank Account</h2>
-        {this.renderErrors()}
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label>
-              <strong>Account Number:</strong>
-              <input
-                type="text"
-                id="account_number"
-                name="account_number"
-                value={bankAcct.account_number}
-                onChange={this.handleInputChange} />
-            </label>
-          </div>
-          <div>
-            <label>
-              <strong>Routing Number:</strong>
-              <input
-                type="text"
-                id="routing_number"
-                name="routing_number"
-                value={bankAcct.routing_number}
-                onChange={this.handleInputChange} />
-            </label>
-          </div>
-          <div>
-            <label>
-              <strong>Nickname:</strong>
-              <input
-                type="text"
-                id="nickname"
-                name="nickname"
-                value={bankAcct.nickname}
-                onChange={this.handleInputChange} />
-            </label>
-          </div>
-          <div>
-            <label>
-              <strong>Address:</strong>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                value={bankAcct.address}
-                onChange={this.handleInputChange} />
-            </label>
-          </div>
-          <div>
-            <label>
-              <strong>Address 2:</strong>
-              <input
-                type="text"
-                id="address2"
-                name="address2"
-                value={bankAcct.address2}
-                onChange={this.handleInputChange} />
-            </label>
-          </div>
-          <div>
-            <label>
-              <strong>City:</strong>
-              <input
-                type="text"
-                id="city"
-                name="city"
-                value={bankAcct.city}
-                onChange={this.handleInputChange} />
-            </label>
-          </div>
-          <div>
-            <label>
-              <strong>ZIP Code:</strong>
-              <input
-                type="text"
-                id="postal"
-                name="postal"
-                value={bankAcct.postal}
-                onChange={this.handleInputChange} />
-            </label>
-          </div>
-          <div>
-            <button type="submit">Save</button>
-          </div>
-        </form>
+        <Header as='h3'>
+          Bank Account Info
+        </Header>
+        {bankAccountErrors(this.state.errors)}
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Field>
+            <label>Account Number</label>
+            <input
+              type='text'
+              id='account_number'
+              name='account_number'
+              placeholder=''
+              value={bankAcct.account_number}
+              onChange={this.handleInputChange} />
+          </Form.Field>
+          <Form.Field>
+            <label>Routing Number</label>
+            <input
+              type='text'
+              id='routing_number'
+              name='routing_number'
+              value={bankAcct.routing_number}
+              onChange={this.handleInputChange} />
+          </Form.Field>
+          <Form.Field>
+            <label>Nickname</label>
+            <input
+              type='text'
+              id='nickname'
+              name='nickname'
+              value={bankAcct.nickname}
+              onChange={this.handleInputChange} />
+          </Form.Field>
+          <Form.Field>
+            <label>Address</label>
+            <input
+              type='text'
+              id='address'
+              name='address'
+              value={bankAcct.address}
+              onChange={this.handleInputChange} />
+          </Form.Field>
+          <Form.Field>
+            <label>Address 2</label>
+            <input
+              type='text'
+              id='address2'
+              name='address2'
+              value={bankAcct.address2}
+              onChange={this.handleInputChange} />
+          </Form.Field>
+          <Form.Field>
+            <label>City</label>
+            <input
+              type='text'
+              id='city'
+              name='city'
+              value={bankAcct.city}
+              onChange={this.handleInputChange} />
+          </Form.Field>
+          <Form.Field>
+            <label>ZIP Code</label>
+            <input
+              type='text'
+              id='postal'
+              name='postal'
+              value={bankAcct.postal}
+              onChange={this.handleInputChange} />
+          </Form.Field>
+          <Button type='submit'>Submit</Button>
+          <Button type='button' onClick={(e, data) => this.props.history.push(cancelURL)}>Cancel</Button>
+        </Form>
       </div>
     );
   }
@@ -163,16 +149,17 @@ BankAccountForm.propTypes = {
 
 BankAccountForm.defaultProps = {
   bankAcct: {
+    id: '',
     account_number: '',
     routing_number: '',
     nickname: '',
-    location_attributes: {
-      address: '',
-      address2: '',
-      city: '',
-      postal: '',
-    }
-  }
+    location_id: '',
+    address: '',
+    address2: '',
+    city: '',
+    postal: '',
+  },
+  errors: []
 };
 
 export default BankAccountForm;

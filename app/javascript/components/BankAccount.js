@@ -1,30 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Header, Button, List, Table } from 'semantic-ui-react';
+
+import { BANK_ACCOUNT_HEADERS, renderBankAccountRow } from '../helpers/helpers';
 
 const BankAccount = ({ bankAcct, onDelete }) => (
   <div>
-    <h2>
-      {bankAcct.nickname + ' - ' + bankAcct.created_at}
-      <Link to={`/bank_accounts/${bankAcct.id}/edit`}>Edit</Link>
-      <button className="delete" type="button" onClick={() => onDelete(bankAcct.id)}>
-        Delete
-      </button>
-    </h2>
-    <ul>
-      <li>
-        <strong>Account Number: </strong>
-        {bankAcct.account_number}
-      </li>
-      <li>
-        <strong>Routing Number: </strong>
-        {bankAcct.routing_number}
-      </li>
-      <li>
-        <strong>City: </strong>
-        {bankAcct.city}
-      </li>
-    </ul>
+    <Header as='h2' floated='left'>
+      Bank Account Details - {bankAcct.nickname}
+    </Header>
+    <Header as='h3' floated='right'>
+      <Link to={`/bank_accounts/${bankAcct.id}/edit`}>
+        Edit
+      </Link>
+    </Header>
+    <Table celled>
+      <Table.Header>
+        <Table.Row>
+          {BANK_ACCOUNT_HEADERS.map((header, index) => (
+            <Table.HeaderCell key={index}>{header}</Table.HeaderCell>
+          ))}
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        {renderBankAccountRow(bankAcct)}
+      </Table.Body>
+    </Table>
+    <Button className='delete' type='button' onClick={() => onDelete(bankAcct.id)}>
+      Delete
+    </Button>
   </div>
 );
 

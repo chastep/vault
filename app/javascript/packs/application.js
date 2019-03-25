@@ -4,6 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from '../components/App';
 
+import 'semantic-ui-css/semantic.min.css'
+import './application.css'
+
 document.addEventListener('DOMContentLoaded', () => {
   render(
     <BrowserRouter>
