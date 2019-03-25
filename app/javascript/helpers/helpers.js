@@ -1,32 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Table } from "semantic-ui-react";
-
-export const validateBankAccount = (bankAcct) => {
-  const errors = {};
-
-  if (bankAcct.account_number === '') {
-    errors.account_number = 'You must enter a valid account number!';
-  }
-
-  if (bankAcct.routing_number === '') {
-    errors.routing_number = 'You must enter a valid routing number!';
-  }
-
-  if (bankAcct.address === '') {
-    errors.address = 'You must enter a valid address!';
-  }
-
-  if (bankAcct.city === '') {
-    errors.city = 'You must enter a valid city!';
-  }
-  
-  return errors;
-};
-
-export const isEmptyObject = (obj) => {
-  return Object.keys(obj).length === 0;
-};
+import { Table, Message } from "semantic-ui-react";
 
 export const BANK_ACCOUNT_HEADERS = [
   'ID',
@@ -36,6 +10,39 @@ export const BANK_ACCOUNT_HEADERS = [
   'Address',
   'Created At' 
 ];
+
+export const LOCATION_ATTRS = [
+  'address',
+  'address2',
+  'city',
+  'postal'
+];
+
+export const validateBankAccount = (bankAcct) => {
+  const errors = [];
+
+  if (bankAcct.account_number === '') {
+    errors.push('You must enter a valid account number!');
+  }
+
+  if (bankAcct.routing_number === '') {
+    errors.push('You must enter a valid routing number!');
+  }
+
+  if (bankAcct.address === '') {
+    errors.push('You must enter a valid address!');
+  }
+
+  if (bankAcct.city === '') {
+    errors.push('You must enter a valid city!');
+  }
+  
+  return errors;
+};
+
+export const isEmptyObject = (obj) => {
+  return Object.keys(obj).length === 0;
+};
 
 export const renderBankAccountRow = (bankAcct) => {
   return (
@@ -56,4 +63,17 @@ export const renderBankAccountRow = (bankAcct) => {
       <Table.Cell>{bankAcct.created_at}</Table.Cell>
     </Table.Row>
   )
+};
+
+export const bankAccountErrors = (errors) => {
+  if (errors.length === 0) {
+    return null;
+  }
+
+  return (
+    <Message color='red'>
+      <Message.Header>Form Errors</Message.Header>
+      <Message.List items={errors} />
+    </Message>
+  );
 };

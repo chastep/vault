@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Switch } from 'react-router-dom';
-import { Container, Segment } from "semantic-ui-react";
+import { Container, Segment } from 'semantic-ui-react';
 
 import Header from './Header';
 import BankAccount from './BankAccount';
@@ -26,7 +26,9 @@ class Page extends Component {
   componentDidMount() {
     axios
       .get('/api/bank_accounts.json')
-      .then(response => this.setState({ bankAccounts: response.data }))
+      .then(response => this.setState(
+        { bankAccounts: response.data }
+      ))
       .catch((error) => {
         console.log(error);
       });
@@ -113,18 +115,18 @@ class Page extends Component {
             <Segment>
               <Switch>
                 <PropsRoute
-                  path="/bank_accounts/new"
+                  path='/bank_accounts/new'
                   component={BankAccountForm}
                   onSubmit={this.addBankAccount} />
                 <PropsRoute
                   exact
-                  path="/bank_accounts/:id/edit"
+                  path='/bank_accounts/:id/edit'
                   component={BankAccountForm}
                   bankAcct={bankAcct}
                   onSubmit={this.updateBankAccount}
                 />
                 <PropsRoute
-                  path="/bank_accounts/:id"
+                  path='/bank_accounts/:id'
                   component={BankAccount}
                   bankAcct={bankAcct}
                   onDelete={this.deleteBankAccount} />
