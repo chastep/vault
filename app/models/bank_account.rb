@@ -14,7 +14,7 @@ class BankAccount < ApplicationRecord
     valid_number = Adapter::RoutingNumberInfoAdapter.new.lookup(routing_number)
 
     unless valid_number == routing_number
-      errors.add(:routing_number, 'Routing number does not exist')
+      errors.add(:routing_number, 'is invalid/does not exist')
     end
   end
 end

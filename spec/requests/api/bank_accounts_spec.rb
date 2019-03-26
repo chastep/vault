@@ -8,7 +8,7 @@ RSpec.describe 'Bank Accounts API', type: :request do
     {
       bank_account: {
         account_number: '0999888777',
-        routing_number: '111222333',
+        routing_number: '011000015',
         nickname: 'Bank Acct Nickname',
         location_attributes: {
           address: '456 Faker St',
@@ -23,7 +23,7 @@ RSpec.describe 'Bank Accounts API', type: :request do
     {
       bank_account: {
         account_number: '0777666555',
-        routing_number: '111222333',
+        routing_number: '011000015',
         nickname: 'Bank Acct Nickname',
         location_attributes: {
           address: location_1.address,
@@ -38,7 +38,7 @@ RSpec.describe 'Bank Accounts API', type: :request do
     {
       bank_account: {
         account_number: nil,
-        routing_number: '111222333',
+        routing_number: '011000015',
         nickname: 'Bank Acct Nickname',
         location_attributes: {
           address: '456 Faker St',
@@ -53,7 +53,7 @@ RSpec.describe 'Bank Accounts API', type: :request do
     {
       bank_account: {
         account_number: '0999888777',
-        routing_number: '111222333',
+        routing_number: '011000015',
         nickname: 'Bank Acct Nickname',
         location_attributes: {
           postal: 98765
