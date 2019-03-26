@@ -25,11 +25,14 @@ class BankAccountList extends Component {
         <Header as='h2' floated='left'>
           Bank Accounts
         </Header>
-        <Header as='h3' floated='right'>
-          <Link to={`/bank_accounts/new`}>
-            New
-          </Link>
-        </Header>
+        {
+          !window.location.href.includes('edit') &&
+            <Header as='h3' floated='right'>
+              <Link to={`/bank_accounts/new`}>
+                New
+              </Link>
+            </Header>
+        }
         <Table celled>
           <Table.Header>
             <Table.Row>

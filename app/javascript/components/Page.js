@@ -16,6 +16,7 @@ class Page extends Component {
 
     this.state = {
       bankAccounts: null,
+      errors: [],
     };
 
     this.addBankAccount = this.addBankAccount.bind(this);
@@ -42,12 +43,22 @@ class Page extends Component {
         const savedBankAcct = response.data;
         this.setState(prevState => ({
           bankAccounts: [...prevState.bankAccounts, savedBankAcct],
+          errors: []
         }));
+
         const { history } = this.props;
         history.push(`/bank_accounts/${savedBankAcct.id}`);
       })
       .catch((error) => {
-        console.log(error);
+        const messages = error.response.data.message
+        this.setState(prevState => ({
+          bankAccounts: prevState.bankAccounts,
+          errors: messages
+        }));
+
+        const { history } = this.props;
+        history.push(`/bank_accounts`);
+        history.push(`/bank_accounts/new`);
       });
   }
 
@@ -59,14 +70,24 @@ class Page extends Component {
         const updatedBankAcct = response.data;
         const newBankAccounts = bankAccounts.filter(bank_acct => bank_acct.id !== updatedBankAcct.id);
         newBankAccounts.push(updatedBankAcct)
+        this.setState({
+          bankAccounts: newBankAccounts,
+          errors: []
+        });
+
         const { history } = this.props;
         history.push(`/bank_accounts/${updatedBankAcct.id}`);
-        this.setState(
-          { bankAccounts: newBankAccounts }
-        );
       })
       .catch((error) => {
-        console.log(error);
+        const messages = error.response.data.message
+        this.setState(prevState => ({
+          bankAccounts: prevState.bankAccounts,
+          errors: messages
+        }));
+
+        const { history } = this.props;
+        history.push(`/bank_accounts`);
+        history.push(`/bank_accounts/${updatedBankAcct.id}/edit`);
       });
   }
 
@@ -78,12 +99,13 @@ class Page extends Component {
         .then((response) => {
           if (response.status === 204) {
             alert('Bank Account deleted!');
+            const { bankAccounts } = this.state;
+            this.setState({
+              bankAccounts: bankAccounts.filter(bank_acct => bank_acct.id !== bankAcctId)
+            });
+
             const { history } = this.props;
             history.push('/bank_accounts');
-            const { bankAccounts } = this.state;
-            this.setState(
-              { bankAccounts: bankAccounts.filter(bank_acct => bank_acct.id !== bankAcctId) }
-            );
           }
         })
         .catch((error) => {
@@ -117,12 +139,14 @@ class Page extends Component {
                 <PropsRoute
                   path='/bank_accounts/new'
                   component={BankAccountForm}
+                  errors={this.state.errors}
                   onSubmit={this.addBankAccount} />
                 <PropsRoute
                   exact
                   path='/bank_accounts/:id/edit'
                   component={BankAccountForm}
                   bankAcct={bankAcct}
+                  errors={this.state.errors}
                   onSubmit={this.updateBankAccount}
                 />
                 <PropsRoute

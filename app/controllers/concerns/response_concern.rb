@@ -1,6 +1,10 @@
-module ResponseConcern
+module ResponseConcern  
   def json_response(object, status = :ok)
     render json: object, status: status
+  end
+
+  def validation_errors
+    json_response({ message: @bank_acct.errors.full_messages }, :unprocessable_entity)
   end
 
   def bank_account_payload(record)

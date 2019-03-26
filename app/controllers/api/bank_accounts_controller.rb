@@ -15,20 +15,26 @@ class Api::BankAccountsController < ApplicationController
     if location.valid?
       location.save!
       @bank_acct.location = location
+    end
+
+    if @bank_acct.valid?
       @bank_acct.save!
 
       json_response(bank_account_payload(@bank_acct), :created)
     else
-      json_response({ message: 'Invalid parameters' }, :unprocessable_entity)
+      validation_errors
     end
   end
 
+  # not used...
   def show
     json_response(@bank_acct)
   end
 
   def update
     @bank_acct.update_attributes(bank_acct_params)
+
+    validation_errors unless @bank_acct.valid?
 
     json_response(bank_account_payload(@bank_acct.reload))
   end
@@ -58,9 +64,5 @@ class Api::BankAccountsController < ApplicationController
 
   def find_bank_acct
     @bank_acct = BankAccount.find(params[:id])
-  end
-
-  def handle_validation_errors
-    render json: { errors: @bank_acct.errors.full_messages }, status: 422
   end
 end

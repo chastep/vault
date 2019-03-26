@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Header, Button, Form } from 'semantic-ui-react';
 
-import { isEmptyObject, validateBankAccount, bankAccountErrors, LOCATION_ATTRS } from '../helpers/helpers';
+import { isEmptyObject, validateBankAccount, bankAccountErrors } from '../helpers/helpers';
 
 class BankAccountForm extends Component {
   constructor(props) {
@@ -10,7 +10,8 @@ class BankAccountForm extends Component {
 
     this.state = {
       bankAcct: props.bankAcct,
-      errors: [],
+      errors: props.errors,
+      isSubmitting: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,11 +40,18 @@ class BankAccountForm extends Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
+
+    this.setState({isSubmitting: true})
+
     const { bankAcct } = this.state;
     const errors = validateBankAccount(bankAcct);
+
     if (!isEmptyObject(errors)) {
-      this.setState({ errors });
+      this.setState({
+        isSubmitting: false,
+        errors: errors
+      });
     } else {
       const payload = this.formatBankAccountPayload(bankAcct);
       this.props.onSubmit(payload);
@@ -60,6 +68,7 @@ class BankAccountForm extends Component {
   }
 
   render() {
+    const submitBtnDisabled = this.state.isSubmitting;
     const { bankAcct } = this.state;
     const cancelURL = bankAcct.id ? `/bank_accounts/${bankAcct.id}` : '/bank_accounts';
 
@@ -134,7 +143,7 @@ class BankAccountForm extends Component {
               value={bankAcct.postal}
               onChange={this.handleInputChange} />
           </Form.Field>
-          <Button type='submit'>Submit</Button>
+          <Button type='submit' disabled={submitBtnDisabled}>Submit</Button>
           <Button type='button' onClick={(e, data) => this.props.history.push(cancelURL)}>Cancel</Button>
         </Form>
       </div>
@@ -145,6 +154,7 @@ class BankAccountForm extends Component {
 BankAccountForm.propTypes = {
   bankAcct: PropTypes.shape(),
   onSubmit: PropTypes.func.isRequired,
+  errors: PropTypes.array,
 };
 
 BankAccountForm.defaultProps = {
@@ -159,7 +169,8 @@ BankAccountForm.defaultProps = {
     city: '',
     postal: '',
   },
-  errors: []
+  errors: [],
+  isSubmitting: false,
 };
 
 export default BankAccountForm;
