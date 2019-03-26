@@ -15,18 +15,14 @@
     "react-dom": "^16.8.5",
     "react-router-dom": "^5.0.0",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.86.0"
+    "semantic-ui-react": "^0.86.0",
+    "webpack-dev-server": "^3.1.14"
   },
   "devDependencies": {
     "eslint": "^5.12.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.0",
-    "webpack-dev-server": "^3.1.14"
-  },
-  "scripts": {
-    "build": "yarn install && yarn build",
-    "heroku-postbuild": "yarn build && yarn deploy"
+    "eslint-plugin-react": "^7.11.0"
   }
 }
