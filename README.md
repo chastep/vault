@@ -7,6 +7,7 @@ This simple CRUD app will make all your complex and secure online bank account l
 ## Routing Number Validations
 
 The Vault references [RoutingNumbers.Info](https://www.routingnumbers.info/index.html) to validate user inputted routing numbers. Given limited resources and time this was a good starting point for verification, but it would be wise/a long term initiative to build around a more trusted source. Some options are listed below, most are just routing number lookup validators though:
+
 | Resource | Link | Type |
 | -------- |:----:| :---:|
 | Wiki | [wiki description](https://en.wikipedia.org/wiki/ABA_routing_transit_number) | Reference |
