@@ -17,6 +17,7 @@ The Vault references [RoutingNumbers.Info](https://www.routingnumbers.info/index
 ## Things you'll need:
 * ruby 2.5.0
 * rails 5.2.2.1
+* bundler 2.0.1
 * postgres 11.2
 * node 11.12.0
 * yarn 1.13.0
@@ -25,6 +26,7 @@ The Vault references [RoutingNumbers.Info](https://www.routingnumbers.info/index
 ```
 git@github.com:chastep/vault.git
 cd vault
+bundle install
 rails db:create
 rails db:migrate
 rails db:seed
