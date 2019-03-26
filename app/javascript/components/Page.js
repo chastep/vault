@@ -9,6 +9,7 @@ import BankAccount from './BankAccount';
 import BankAccountForm from './BankAccountForm';
 import BankAccountList from './BankAccountList';
 import PropsRoute from './PropsRoute';
+import { success } from '../helpers/notifications';
 
 class Page extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class Page extends Component {
     axios
       .post('/api/bank_accounts.json', newBankAcct)
       .then((response) => {
-        alert('Bank Account added!');
+        success('Bank Account added!');
         const savedBankAcct = response.data;
         this.setState(prevState => ({
           bankAccounts: [...prevState.bankAccounts, savedBankAcct],
@@ -66,6 +67,7 @@ class Page extends Component {
     axios
       .put(`/api/bank_accounts/${updatedBankAcct.id}.json`, updatedBankAcct)
       .then((response) => {
+        success('Bank Account updated!');
         const { bankAccounts } = this.state;
         const updatedBankAcct = response.data;
         const newBankAccounts = bankAccounts.filter(bank_acct => bank_acct.id !== updatedBankAcct.id);
@@ -98,7 +100,7 @@ class Page extends Component {
         .delete(`/api/bank_accounts/${bankAcctId}.json`)
         .then((response) => {
           if (response.status === 204) {
-            alert('Bank Account deleted!');
+            success('Bank Account deleted!');
             const { bankAccounts } = this.state;
             this.setState({
               bankAccounts: bankAccounts.filter(bank_acct => bank_acct.id !== bankAcctId)
