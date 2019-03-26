@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<h1
+  className="ui icon center aligned header"
+>
+  <i
+    aria-hidden="true"
+    className="lock icon"
+    onClick={[Function]}
+  />
+  Vault
+  <div
+    className="sub header"
+  >
+    Manage your Bank Accounts with ease!
+  </div>
+</h1>
+`;

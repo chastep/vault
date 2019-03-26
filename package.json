@@ -2,7 +2,13 @@
   "name": "vault",
   "private": true,
   "scripts": {
-    "lint": "eslint app/javascript"
+    "lint": "eslint app/javascript",
+    "test": "jest"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "webpack/test.js"
+    ]
   },
   "dependencies": {
     "@babel/preset-react": "^7.0.0",
@@ -23,7 +29,9 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.0"
+    "eslint-plugin-react": "^7.11.0",
+    "jest": "^24.5.0",
+    "react-test-renderer": "^16.8.5"
   },
   "engines": {
     "node": "11.12.0",
