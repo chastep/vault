@@ -35,9 +35,11 @@ class Api::BankAccountsController < ApplicationController
   def update
     @bank_acct.update_attributes(bank_acct_params)
 
-    validation_errors unless @bank_acct.valid?
-
-    json_response(bank_account_payload(@bank_acct.reload))
+    if @bank_acct.valid?
+      json_response(bank_account_payload(@bank_acct.reload))
+    else
+      validation_errors 
+    end
   end
 
   def destroy
