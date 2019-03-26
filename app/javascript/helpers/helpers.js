@@ -29,6 +29,10 @@ export const validateBankAccount = (bankAcct) => {
   if (bankAcct.city === '') {
     errors.push('You must enter a valid city!');
   }
+
+  if (bankAcct.region === '') {
+    errors.push('You must enter a valid region!');
+  }
   
   return errors;
 };
@@ -38,7 +42,7 @@ export const isEmptyObject = (obj) => {
 };
 
 const formatAddress = (bankAcct) => {
-  return `${bankAcct.address}, ${bankAcct.address2} ${bankAcct.city}, ${bankAcct.postal}`
+  return `${bankAcct.address}, ${bankAcct.address2} ${bankAcct.city}, ${bankAcct.region} ${bankAcct.postal}`
 }
 
 export const renderBankAccountRow = (bankAcct) => {

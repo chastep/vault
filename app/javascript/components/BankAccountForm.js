@@ -32,6 +32,7 @@ class BankAccountForm extends Component {
             address: bacct.address,
             address2: bacct.address2,
             city: bacct.city,
+            region: bacct.region,
             postal: bacct.postal,
           }
         }
@@ -135,6 +136,15 @@ class BankAccountForm extends Component {
               onChange={this.handleInputChange} />
           </Form.Field>
           <Form.Field>
+            <label>Region</label>
+            <input
+              type='text'
+              id='region'
+              name='region'
+              value={bankAcct.region}
+              onChange={this.handleInputChange} />
+          </Form.Field>
+          <Form.Field>
             <label>ZIP Code</label>
             <input
               type='text'
@@ -167,6 +177,7 @@ BankAccountForm.defaultProps = {
     address: '',
     address2: '',
     city: '',
+    region: '',
     postal: '',
   },
   errors: [],

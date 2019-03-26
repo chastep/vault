@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   namespace :api do
     resources :bank_accounts, only: %i[index create show update destroy]
   end
+
+  get '*unmatched_route', to: 'errors#show', code: 404
 end

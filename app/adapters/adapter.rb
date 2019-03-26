@@ -1,5 +1,3 @@
-# require 'uri'
-
 module Adapter
   class RoutingNumberInfoAdapter
     ROUTING_INFO_URL = 'https://www.routingnumbers.info/api/data.json'.freeze

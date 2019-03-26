@@ -17,6 +17,7 @@ module ResponseConcern
       address: record.location.address,
       address2: record.location.address2,
       city: record.location.city,
+      region: record.location.region,
       postal: record.location.postal,
       created_at: record.created_at,
       updated_at: record.updated_at

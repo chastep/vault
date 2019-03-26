@@ -1,4 +1,5 @@
 class Api::BankAccountsController < ApplicationController
+  respond_to :json
   before_action :find_bank_acct, only: [:show, :update, :destroy]
 
   def index
@@ -57,6 +58,7 @@ class Api::BankAccountsController < ApplicationController
         :address,
         :address2,
         :city,
+        :region,
         :postal
       ]
     )

@@ -14,6 +14,7 @@ RSpec.describe 'Bank Accounts API', type: :request do
           address: '456 Faker St',
           address2: 'Suite 789',
           city: 'New York',
+          region: 'NY',
           postal: 54321
         }
       }
@@ -29,6 +30,7 @@ RSpec.describe 'Bank Accounts API', type: :request do
           address: location_1.address,
           address2: location_1.address2,
           city: location_1.city,
+          region: location_1.region,
           postal: location_1.postal
         }
       }
@@ -44,6 +46,7 @@ RSpec.describe 'Bank Accounts API', type: :request do
           address: '456 Faker St',
           address2: 'Suite 789',
           city: 'New York',
+          region: 'NY',
           postal: 54321
         }
       }
@@ -115,7 +118,7 @@ RSpec.describe 'Bank Accounts API', type: :request do
       end
 
       it 'returns a validation failure message' do
-        expect(json['message']).to match(/Validation failed: Account number can't be blank/)
+        expect(json['message']).to eq(["Account number can't be blank"])
       end
     end
 
@@ -127,7 +130,7 @@ RSpec.describe 'Bank Accounts API', type: :request do
       end
 
       it 'returns a validation failure message' do
-        expect(json['message']).to match(/Invalid parameters/)
+        expect(json['message']).to eq(["Location can't be blank", "Location address can't be blank", "Location city can't be blank", "Location region can't be blank"])
       end
 
     end
@@ -148,7 +151,7 @@ RSpec.describe 'Bank Accounts API', type: :request do
     end
 
     context 'when the record does not exist' do
-      before { get "/api/bank_accounts/nil" }
+      before { get "/api/bank_accounts/#{bank_acct_1.id * 5}" }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(404)
