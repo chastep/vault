@@ -1,7 +1,7 @@
 module Adapter
   class RoutingNumberInfoAdapter
     ROUTING_INFO_URL = 'https://www.routingnumbers.info/api/data.json'.freeze
-    attr_reader :client, :poem
+    attr_reader :client
 
     def initialize
       @client = Faraday.new(url: ROUTING_INFO_URL) do |conn|

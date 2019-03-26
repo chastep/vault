@@ -1,4 +1,4 @@
-// not in use, failed during heroku deploy
+// not in use, failed during heroku deploy (console errors)
 
 import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
