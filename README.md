@@ -15,10 +15,10 @@ The Vault references [RoutingNumbers.Info](https://www.routingnumbers.info/index
 | American Bankers Assocation | [American Bankers Assocation](https://routingnumber.aba.com/default1.aspx) | Lookup |
 
 ## Things you'll need:
-* ruby 2.5.x
+* ruby 2.5.0
 * rails 5.2.2.1
 * postgres 11.2
-* node v11.12.0
+* node 11.12.0
 * yarn 1.13.0
 
 ### Clone down, create, and run:
@@ -32,7 +32,15 @@ yarn install
 rails s
 ```
 
-### Testing: RSpec
+### Navigation
+* GET `http://localhost:3000/bank_accounts` => display all current bank accounts
+* GET `http://localhost:3000/bank_accounts/new` => display all create bank account form
+* POST `http://localhost:3000/bank_accounts` => create bank account (provide corresponding params)
+* GET `http://localhost:3000/bank_accounts/(:id)` => show bank account (if present)
+* PATCH/PUT `http://localhost:3000/bank_accounts/(:id)` => update bank account (if present)
+* DELETE `http://localhost:3000/bank_accounts/(:id)` => delete bank account (if present)
+
+### Testing locally: RSpec
 ```
 bundle exec rpsec
 ```
