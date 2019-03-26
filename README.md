@@ -17,6 +17,7 @@ The Vault references [RoutingNumbers.Info](https://www.routingnumbers.info/index
 ## Things you'll need:
 * ruby 2.5.0
 * rails 5.2.2.1
+* bundler 2.0.1
 * postgres 11.2
 * node 11.12.0
 * yarn 1.13.0
@@ -25,6 +26,7 @@ The Vault references [RoutingNumbers.Info](https://www.routingnumbers.info/index
 ```
 git@github.com:chastep/vault.git
 cd vault
+bundle install
 rails db:create
 rails db:migrate
 rails db:seed
@@ -42,7 +44,12 @@ If you would like to make frontend changes locally and have them reload in realt
 * PATCH/PUT `http://localhost:3000/bank_accounts/(:id)` => update bank account (if present)
 * DELETE `http://localhost:3000/bank_accounts/(:id)` => delete bank account (if present)
 
-### Testing locally: RSpec & Jest
+### Heroku (**UNDER DEVELOPMENT**)
+[Heroku Vault Site](https://fathomless-everglades-82491.herokuapp.com/bank_accounts)
+
+There are currently issues with webpack/assest compiling that's causing all styling/`semantic-ui-react/semantic-ui-css` related components to not appear. It work functionally, but doesn't look good/handle form erros well. Still trying to figure out what is wrong.
+
+### Testing locally: RSpec
 ```
 bundle exec rpsec
 yarn test
