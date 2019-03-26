@@ -42,7 +42,12 @@ If you would like to make frontend changes locally and have them reload in realt
 * PATCH/PUT `http://localhost:3000/bank_accounts/(:id)` => update bank account (if present)
 * DELETE `http://localhost:3000/bank_accounts/(:id)` => delete bank account (if present)
 
-### Testing locally: RSpec & Jest
+### Heroku (**UNDER DEVELOPMENT**)
+[Heroku Vault Site](https://fathomless-everglades-82491.herokuapp.com/bank_accounts)
+
+There are currently issues with webpack/assest compiling that's causing all styling/`semantic-ui-react/semantic-ui-css` related components to not appear. It work functionally, but doesn't look good/handle form erros well. Still trying to figure out what is wrong.
+
+### Testing locally: RSpec
 ```
 bundle exec rpsec
 yarn test
