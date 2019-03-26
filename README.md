@@ -32,6 +32,8 @@ yarn install
 rails s
 ```
 
+If you would like to make frontend changes locally and have them reload in realtime run `./bin/webpack-dev-server` alongside `rails s`.
+
 ### Navigation
 * GET `http://localhost:3000/bank_accounts` => display all current bank accounts
 * GET `http://localhost:3000/bank_accounts/new` => display all create bank account form
@@ -40,9 +42,10 @@ rails s
 * PATCH/PUT `http://localhost:3000/bank_accounts/(:id)` => update bank account (if present)
 * DELETE `http://localhost:3000/bank_accounts/(:id)` => delete bank account (if present)
 
-### Testing locally: RSpec
+### Testing locally: RSpec & Jest
 ```
 bundle exec rpsec
+yarn test
 ```
 
 Just open a PR and push if you find something wrong with The Vault, any feedback would be greatly appreciated!

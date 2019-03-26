@@ -1,0 +1,251 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders with bank accounts, account selected 1`] = `
+<section>
+  <h2
+    className="ui left floated header"
+  >
+    Bank Accounts
+  </h2>
+  <h3
+    className="ui right floated header"
+  >
+    <a
+      href="/bank_accounts/new"
+      onClick={[Function]}
+    >
+      New
+    </a>
+  </h3>
+  <table
+    className="ui celled table"
+  >
+    <thead
+      className=""
+    >
+      <tr
+        className=""
+      >
+        <th
+          className=""
+        >
+          Nickname
+        </th>
+        <th
+          className=""
+        >
+          Account Number
+        </th>
+        <th
+          className=""
+        >
+          Routing Number
+        </th>
+        <th
+          className=""
+        >
+          Address
+        </th>
+        <th
+          className=""
+        >
+          Created At
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className=""
+    >
+      <tr
+        className=""
+      >
+        <td
+          className="single line"
+        >
+          <a
+            href="/bank_accounts/1"
+            onClick={[Function]}
+          >
+            Test Account
+          </a>
+        </td>
+        <td
+          className=""
+        >
+          1231231230
+        </td>
+        <td
+          className=""
+        >
+          011000015
+        </td>
+        <td
+          className=""
+        >
+          123 Fake St, Apt 4 Chicago, IL 60606
+        </td>
+        <td
+          className="single line"
+        >
+          03/26/2019 01:10 PM
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+`;
+
+exports[`renders with bank accounts, none selected 1`] = `
+<section>
+  <h2
+    className="ui left floated header"
+  >
+    Bank Accounts
+  </h2>
+  <h3
+    className="ui right floated header"
+  >
+    <a
+      href="/bank_accounts/new"
+      onClick={[Function]}
+    >
+      New
+    </a>
+  </h3>
+  <table
+    className="ui celled table"
+  >
+    <thead
+      className=""
+    >
+      <tr
+        className=""
+      >
+        <th
+          className=""
+        >
+          Nickname
+        </th>
+        <th
+          className=""
+        >
+          Account Number
+        </th>
+        <th
+          className=""
+        >
+          Routing Number
+        </th>
+        <th
+          className=""
+        >
+          Address
+        </th>
+        <th
+          className=""
+        >
+          Created At
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className=""
+    >
+      <tr
+        className=""
+      >
+        <td
+          className="single line"
+        >
+          <a
+            href="/bank_accounts/1"
+            onClick={[Function]}
+          >
+            Test Account
+          </a>
+        </td>
+        <td
+          className=""
+        >
+          1231231230
+        </td>
+        <td
+          className=""
+        >
+          011000015
+        </td>
+        <td
+          className=""
+        >
+          123 Fake St, Apt 4 Chicago, IL 60606
+        </td>
+        <td
+          className="single line"
+        >
+          03/26/2019 01:10 PM
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+`;
+
+exports[`renders with no bank accounts 1`] = `
+<section>
+  <h2
+    className="ui left floated header"
+  >
+    Bank Accounts
+  </h2>
+  <h3
+    className="ui right floated header"
+  >
+    <a
+      href="/bank_accounts/new"
+      onClick={[Function]}
+    >
+      New
+    </a>
+  </h3>
+  <table
+    className="ui celled table"
+  >
+    <thead
+      className=""
+    >
+      <tr
+        className=""
+      >
+        <th
+          className=""
+        >
+          Nickname
+        </th>
+        <th
+          className=""
+        >
+          Account Number
+        </th>
+        <th
+          className=""
+        >
+          Routing Number
+        </th>
+        <th
+          className=""
+        >
+          Address
+        </th>
+        <th
+          className=""
+        >
+          Created At
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className=""
+    />
+  </table>
+</section>
+`;
