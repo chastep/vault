@@ -1,6 +1,6 @@
 require 'faker'
 
-10.times do
+5.times do
   location_hash = {
     address: Faker::Address.street_address,
     address2: Faker::Address.secondary_address,
