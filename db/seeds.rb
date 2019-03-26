@@ -14,7 +14,7 @@ require 'faker'
   bank_acct_hash = {
     account_number: Faker::Number.number(10),
     routing_number: '011000015',
-    nickname: Faker::Lorem.word,
+    nickname: Faker::Company.name,
     location: location
   }
 

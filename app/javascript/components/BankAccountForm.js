@@ -80,79 +80,85 @@ class BankAccountForm extends Component {
         </Header>
         {bankAccountErrors(this.state.errors)}
         <Form onSubmit={this.handleSubmit}>
-          <Form.Field>
-            <label>Account Number</label>
-            <input
-              type='text'
-              id='account_number'
-              name='account_number'
-              placeholder=''
-              value={bankAcct.account_number}
-              onChange={this.handleInputChange} />
-          </Form.Field>
-          <Form.Field>
-            <label>Routing Number</label>
-            <input
-              type='text'
-              id='routing_number'
-              name='routing_number'
-              value={bankAcct.routing_number}
-              onChange={this.handleInputChange} />
-          </Form.Field>
-          <Form.Field>
-            <label>Nickname</label>
-            <input
-              type='text'
-              id='nickname'
-              name='nickname'
-              value={bankAcct.nickname}
-              onChange={this.handleInputChange} />
-          </Form.Field>
-          <Form.Field>
-            <label>Address</label>
-            <input
-              type='text'
-              id='address'
-              name='address'
-              value={bankAcct.address}
-              onChange={this.handleInputChange} />
-          </Form.Field>
-          <Form.Field>
-            <label>Address 2</label>
-            <input
-              type='text'
-              id='address2'
-              name='address2'
-              value={bankAcct.address2}
-              onChange={this.handleInputChange} />
-          </Form.Field>
-          <Form.Field>
-            <label>City</label>
-            <input
-              type='text'
-              id='city'
-              name='city'
-              value={bankAcct.city}
-              onChange={this.handleInputChange} />
-          </Form.Field>
-          <Form.Field>
-            <label>Region</label>
-            <input
-              type='text'
-              id='region'
-              name='region'
-              value={bankAcct.region}
-              onChange={this.handleInputChange} />
-          </Form.Field>
-          <Form.Field>
-            <label>ZIP Code</label>
-            <input
-              type='text'
-              id='postal'
-              name='postal'
-              value={bankAcct.postal}
-              onChange={this.handleInputChange} />
-          </Form.Field>
+          <Form.Group widths='equal'>
+            <Form.Field>
+              <label>Account Number</label>
+              <input
+                type='text'
+                id='account_number'
+                name='account_number'
+                placeholder=''
+                value={bankAcct.account_number}
+                onChange={this.handleInputChange} />
+            </Form.Field>
+            <Form.Field>
+              <label>Routing Number</label>
+              <input
+                type='text'
+                id='routing_number'
+                name='routing_number'
+                value={bankAcct.routing_number}
+                onChange={this.handleInputChange} />
+            </Form.Field>
+            <Form.Field>
+              <label>Nickname</label>
+              <input
+                type='text'
+                id='nickname'
+                name='nickname'
+                value={bankAcct.nickname}
+                onChange={this.handleInputChange} />
+            </Form.Field>
+          </Form.Group>
+          <Form.Group widths='equal'>
+            <Form.Field>
+              <label>Address</label>
+              <input
+                type='text'
+                id='address'
+                name='address'
+                value={bankAcct.address}
+                onChange={this.handleInputChange} />
+            </Form.Field>
+            <Form.Field>
+              <label>Address 2</label>
+              <input
+                type='text'
+                id='address2'
+                name='address2'
+                value={bankAcct.address2}
+                onChange={this.handleInputChange} />
+            </Form.Field>
+          </Form.Group>
+          <Form.Group widths='equal'>
+            <Form.Field>
+              <label>City</label>
+              <input
+                type='text'
+                id='city'
+                name='city'
+                value={bankAcct.city}
+                onChange={this.handleInputChange} />
+            </Form.Field>
+            <Form.Field>
+              <label>Region</label>
+              <input
+                type='text'
+                id='region'
+                name='region'
+                value={bankAcct.region}
+                onChange={this.handleInputChange} />
+            </Form.Field>
+            <Form.Field>
+              <label>ZIP Code</label>
+              <input
+                type='text'
+                id='postal'
+                name='postal'
+                value={bankAcct.postal}
+                onChange={this.handleInputChange} />
+            </Form.Field>
+          </Form.Group>
           <Button type='submit' disabled={submitBtnDisabled}>Submit</Button>
           <Button type='button' onClick={(e, data) => this.props.history.push(cancelURL)}>Cancel</Button>
         </Form>
