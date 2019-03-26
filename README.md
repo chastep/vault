@@ -27,10 +27,8 @@ The Vault references [RoutingNumbers.Info](https://www.routingnumbers.info/index
 git@github.com:chastep/vault.git
 cd vault
 bundle install
-rails db:create
-rails db:migrate
-rails db:seed
 yarn install
+rails db:create && rails db:migrate && rails db:seed
 rails s
 ```
 
