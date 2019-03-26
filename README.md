@@ -27,6 +27,8 @@ git@github.com:chastep/vault.git
 cd vault
 rails db:create
 rails db:migrate
+rails db:seed
+yarn install
 rails s
 ```
 
