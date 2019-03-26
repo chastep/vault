@@ -37,6 +37,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'responders'
 gem 'bootsnap'
 gem 'webpacker', '>= 4.0.x'
+gem 'faraday'
+gem 'faraday_middleware'
 
 group :development, :test do
   gem 'rspec-rails'

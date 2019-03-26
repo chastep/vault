@@ -6,7 +6,7 @@ const Header = () => (
     <Icon name='lock' />
     Vault
     <HeaderUI.Subheader>
-      Manage your Bank Account's with ease!
+      Manage your Bank Accounts with ease!
     </HeaderUI.Subheader>
   </HeaderUI>
 );
